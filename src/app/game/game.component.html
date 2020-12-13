@@ -1,0 +1,14 @@
+<div class="card" [ngClass]="{'card-featured': cardData.editors_choice == 'Y'}">
+    <div class="card-header">
+        <span *ngIf="cardData.editors_choice == 'Y'" class="badge">Editors' Choice</span>
+        <span *ngIf="cardData.editors_choice == 'N'">&nbsp;</span>
+    </div>
+    <div class="card-body">
+        <h3 class="card-title text-truncate" title="{{cardData.title}}">{{cardData.title}}</h3>
+        <p class="card-subtitle text-muted">Platform: {{cardData.platform}}</p>
+        <p class="card-subtitle text-muted">Genre: {{cardData.genre}}</p>
+        <p class="lead">
+            <span class="badge badge-pill badge-primary">{{cardData.score}}</span>
+        </p>
+    </div>
+</div>

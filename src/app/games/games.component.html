@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <app-search (onSearch)="filterData($event)"></app-search>
+        </div>
+        <div class="col-12 text-right">
+            Viewing as: &nbsp;
+            <div class="btn-group" role="group" aria-label="Viewing as">
+                <button type="button" class="btn btn-light" (click)="setViewAs('table')" [ngClass]="{'btn-active': selectedView == 'table'}">
+                    <i class="fa fa-table" aria-hidden="true"></i> Table
+                </button>
+                <button type="button" class="btn btn-light" (click)="setViewAs('card')" [ngClass]="{'btn-active': selectedView == 'card'}">
+                    <i class="fa fa-th-large" aria-hidden="true"></i> Card
+                </button>
+            </div>
+
+        </div>
+        <div class="col-12 my-5">
+            <table mat-table [dataSource]="dataSource" matSort matSortActive="score" matSortDirection='desc'
+                class="mat-elevation-z8" *ngIf="selectedView == 'table'">
+
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="platform">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform </th>
+                    <td mat-cell *matCellDef="let element"> {{element.platform}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="genre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Genre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.genre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="editors_choice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Editors Choice </th>
+                    <td mat-cell *matCellDef="let element"> {{element.editors_choice}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="score">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+                    <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <div *ngIf="selectedView == 'card'">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                    <div *ngFor="let data of dataSourceCard" class="col mb-5">
+                        <app-game [cardData]="data"></app-game>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

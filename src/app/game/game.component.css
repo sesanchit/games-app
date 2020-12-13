@@ -1,0 +1,12 @@
+.card{
+    border-radius: 0;
+}
+
+.card.card-featured{
+    border-color: #03506f;
+}
+
+.card.card-featured .card-header .badge{
+    background-color: #03506f;
+    color: whitesmoke;
+}
